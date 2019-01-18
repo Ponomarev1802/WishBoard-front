@@ -6,8 +6,15 @@ import {Nav} from '../components/Nav'
 import {UserCard} from '../components/UserCard'
 import Wishes from '../components/Wishes'
 import { connect } from 'react-redux'
+import {delWish} from "../actions/wishesActions";
+import {getUser} from "../actions/actions"
 
         class App extends React.Component{
+            componentDidMount(){
+                fetch('/getUser')
+                    .then(response => response.json())
+                    .then(res => getUser(res))
+            };
             render(){
 				console.log(this.props)
 				const profile = this.props.profile
@@ -45,6 +52,11 @@ const mapStateToProps = store=>{
 	return {
 		profile: store.profile,
 	}
+}
+const mapDispatchToProps = dispatch => {
+    return{
+        getUser: profile => dispatch(getUser(profile))
+    }
 }
 
 export default connect(mapStateToProps)(App);

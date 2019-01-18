@@ -5,6 +5,9 @@ export function wishesReducer(state = initialState, action) {
 		case 'DEL_WISH':
 			console.log(action.payload);
 			return state.slice(0, action.payload).concat(state.slice(action.payload+1))
+		case 'GET_USER':
+			console.log(action.payload);
+			return {...state, wishes: action.payload.wishes}
 	
 	
 	default:
