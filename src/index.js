@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { store } from './store/configureStore';
-import { Provider } from 'react-redux'
-import './index.css';
+import { Provider } from 'react-redux';
 import App from './containers/App';
-import {getUser} from './actions/actions'
-//import registerServiceWorker from './registerServiceWorker';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import './App.css';
 
 ReactDOM.render(
 	<Provider store = {store}>
@@ -13,4 +13,3 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('root')
 );
-//registerServiceWorker()

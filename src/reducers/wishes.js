@@ -1,15 +1,21 @@
-export const initialState = [{name: 'first', id: '0'}, {name: 'second', id: '1'}, {name: 'last', id: '2'}]
+export const initialState = [
+	{
+        id: 0,
+		name: 'first'
+	}, {
+		id: 1,
+		name: 'second'
+	}, {
+        id: 2,
+		name: 'last'
+	}
+];
 
 export function wishesReducer(state = initialState, action) {
-	switch (action.type){
+	switch (action.type) {
 		case 'DEL_WISH':
 			console.log(action.payload);
 			return state.slice(0, action.payload).concat(state.slice(action.payload+1))
-		case 'GET_USER':
-			console.log(action.payload);
-			return {...state, wishes: action.payload.wishes}
-	
-	
 	default:
 		return state;
 	}
