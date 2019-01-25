@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import {delWish} from '../actions/wishesActions'
+import { delWish } from '../actions/wishesActions'
 
 
- export class Wish extends React.Component{
+export class Wish extends Component {
 	onBtnClick = e => {
-		this.props.delWish(this.props.id);	
+		this.props.delWish(this.props.id);
 	};
     render(){
-        const {id, name} = this.props;
-        return(
+        const {name} = this.props;
+        return (
             <div className="d-flex">
                 <span className="btn btn-light flex-grow-1 mr-1">{name}</span>
                 <span className="btn btn-light mr-1"><i className="far fa-trash-alt" onClick = {this.onBtnClick}/></span>
@@ -19,6 +19,7 @@ import {delWish} from '../actions/wishesActions'
         );
     }
 }
+
 Wish.propTypes = {
 	id: PropTypes.number.isRequired,
 	name: PropTypes.string.isRequired,
@@ -26,7 +27,7 @@ Wish.propTypes = {
 };
 
 const mapDispatchToProps = {
-    delWish: delWish,
-}
+    delWish: delWish
+};
 
 export default connect (null, mapDispatchToProps)(Wish)

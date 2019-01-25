@@ -1,32 +1,68 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  background-color: #fafafa;
+  padding-bottom: 73px;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+header{
+  background-color: white;
+  border-bottom: #ffc699 solid 1px;
+  height: 50px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header>a{
+  color: #999;
+}
+.card{
+  background-color: white;
+  box-shadow: #ffc699 0px 0px 3px;
+  border-radius: 5px;
+  margin-bottom: 4px;
+}
+.navbar-brand{
+  color: #ef6900;
+}
+#nav {
+  border-top: 1px solid #ffc699;
+}
+#nav>a{
+  color: #999;
+}
+.user_card{
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+}
+.nav-tabs{
+  border-color: #ffc699;
+}
+.active{
+  color: #ef6900 !important;
+  border-color: #ffc699 #ffc699 #fff !important;
+}
+.nav-link{
+  color: #999;
+}
+#wishes>div{
+  margin-top: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.avatar {
+  width: 150px;
+  height: 150px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    padding-bottom: 0;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+input[required]::after {
+    content: "*";
+    color: red;
 }
