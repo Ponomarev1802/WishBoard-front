@@ -5,6 +5,7 @@ export class Header extends React.Component{
         return(
             <header className="navbar justify-content-between">
                 <a className="navbar-brand" href="/">WishBoard</a>
+                <a className="" href="/logout">Выйти</a>
             </header>
         );
     }

@@ -4,17 +4,27 @@ import {Nav} from '../components/Nav'
 import {UserCard} from '../components/UserCard'
 import Wishes from '../components/Wishes'
 import { connect } from 'react-redux'
+import { getProfile } from "../actions/Actions";
+import SignInForm from "../components/Forms/SignIn"
 
 class App extends Component {
+    componentDidMount(){
+        let options = {
+            method: "GET",
+        };
+        fetch("/getUser", options)
+            .then(res => {return (res.json())})
+            .then(res => {this.props.getProfile(res)})
+    }
     render() {
-        console.log(this.props);
         const profile = this.props.profile;
         const wishes = this.props.wishes;
+        const status = this.props.status;
         const delWishAction = this.props.delWishAction;
-        console.log(profile);
         return (
             <div>
                 <Header />
+                {status.auth?
                 <section className="container pt-4">
                     <div className="row">
                         <section className="col-lg-10" id="main">
@@ -32,6 +42,7 @@ class App extends Component {
                         </div>
                     </div>
                 </section>
+                :<SignInForm/>}
                 <footer>
                 </footer>
             </div>
@@ -40,10 +51,14 @@ class App extends Component {
 }
 
 const mapStateToProps = store =>{
-	console.log(store);
 	return {
 		profile: store.profile,
+        status: store.status,
 	}
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+    getProfile: getProfile
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

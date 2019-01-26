@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 class Wishes extends React.Component{
     render(){
         const wishesList = this.props.wishes.map((item)=>(
-			<Wish key={item.id} id = {item.id} name={item.name}/>
+			<Wish key={item.id} id = {item.id} title={item.title}/>
 		));
         return(
             <div id="wishes" className="p-3 bg-white card">
@@ -39,7 +39,6 @@ class Wishes extends React.Component{
 }
 
 const mapStateToProps = store=>{
-	console.log(store);
 	return {
 		wishes: store.wishes,
 	}

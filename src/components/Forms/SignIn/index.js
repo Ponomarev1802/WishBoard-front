@@ -1,7 +1,8 @@
 import React from 'react'
-import propTypes from 'prop-types'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { SignInSubmit } from '../../../actions/Actions'
+import {connect} from "react-redux";
 
 const SignInSchema = Yup.object().shape({
     login: Yup.string()
@@ -10,7 +11,7 @@ const SignInSchema = Yup.object().shape({
         .required('Введите пароль')
 });
 
-export const SignInForm = props => (
+const SignInForm = props => (
     <Formik
         initialValues={
             {
@@ -19,9 +20,8 @@ export const SignInForm = props => (
             }
         }
         validationSchema={SignInSchema}
-        onSubmit={props.onSubmit}
         render={props => (
-            <Form>
+            <Form action = {SignInSubmit(this.login, this.password)}>
                 <div className='form-group'>
                     <label>Email / логин</label>
                     <Field
@@ -45,6 +45,9 @@ export const SignInForm = props => (
     />
 );
 
-SignInForm.propTypes = {
-    onSubmit: propTypes.func.isRequired
+
+const mapDispatchToProps = {
+    SignInSubmit: SignInSubmit
 };
+
+export default connect(null, mapDispatchToProps)(SignInForm);

@@ -1,12 +1,15 @@
-export const initialState = {
-        name: "Maks",
-        surname: "Usenko",
-        following: 3,
-        followers: 45,
-        balance: 2455
-};
+export const initialState = {};
 
 		
-export function userReducer(state = initialState) {
-	return state
+export function userReducer(state = initialState, action) {
+	switch (action.type) {
+		case 'GET_PROFILE':
+		    if (action.payload.user===undefined)
+		        return null
+            else
+			    return (action.payload.user)
+
+	default:
+		return state;
+	}
 }
