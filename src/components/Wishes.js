@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Wish from './Wish'
+import { Wish } from './Wish'
 import { connect } from 'react-redux'
+import { delWish } from "../actions/Actions";
 
 
-class Wishes extends React.Component{
-    render(){
+class Wishes extends Component {
+
+    render() {
+
+        const { delWishAction } = this.props;
+
         const wishesList = this.props.wishes.map((item)=>(
-			<Wish key={item.id} id = {item.id} name={item.name}/>
+			<Wish key={item.id} id={item.id} name={item.name} onDelete={delWishAction} />
 		));
-        return(
+
+        return (
             <div id="wishes" className="p-3 bg-white card">
                 <div className="nav nav-tabs">
                     <div className="nav-item">
@@ -36,17 +42,23 @@ class Wishes extends React.Component{
             </div>
         );
     }
+
 }
 
-const mapStateToProps = store=>{
-	console.log(store);
+const mapStateToProps = store => {
 	return {
-		wishes: store.wishes,
+		wishes: store.wishes
 	}
 };
 
-Wishes.propTypes = {
-	wishes: PropTypes.array.isRequired,
+const mapDispatchToProps = dispatch => {
+    return {
+        delWishAction: id => dispatch(delWish(id))
+    }
 };
 
-export default connect(mapStateToProps)(Wishes);
+Wishes.propTypes = {
+	wishes: PropTypes.array.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wishes);
