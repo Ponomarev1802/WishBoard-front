@@ -42,7 +42,7 @@ export class UserCard extends Component {
 UserCard.propTypes = {
     profile: propTypes.shape({
         name: propTypes.string.isRequired,
-        surname: propTypes.string.isRequired,
+        surname: propTypes.string,
         following: propTypes.number.isRequired,
         followers: propTypes.number.isRequired,
         balance: propTypes.number.isRequired

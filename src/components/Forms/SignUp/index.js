@@ -30,7 +30,7 @@ export const SignUpForm = props => (
                 }
             }
             validationSchema={SignUpSchema}
-            onSubmit={ props.onSubmit }
+            onSubmit={ values => props.onSubmit(values) }
             render={props => (
                 <Form>
                     <div className='form-group'>
