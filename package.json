@@ -32,5 +32,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:8000"
+  "proxy": "http://79.134.84.131:80",
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  }
 }
