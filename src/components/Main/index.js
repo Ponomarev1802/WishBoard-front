@@ -1,14 +1,14 @@
 import React from 'react';
 import Wishes from '../Wishes';
 import {Nav} from "../Nav";
-import {UserCard} from "../UserCard";
+import UserCard from "../UserCard";
 
 export const Main = props => {
     const {profile, wishes} = props;
     return (
         <section className="container pt-4">
             <div className="row">
-                <section className="col-lg-10" id="main">
+                <section className="col-lg-9" id="main">
                     <UserCard profile={profile}/>
                     <Wishes wishes={wishes} />
                 </section>
@@ -18,7 +18,7 @@ export const Main = props => {
                     <a className="nav-link" href="#chat"><i className="far fa-comment fa-lg" /></a>
                     <a className="nav-link" href="#feed"><i className="far fa-newspaper fa-lg" /></a>
                 </nav>
-                <div className="col-lg-2">
+                <div className="col-lg-3">
                     <Nav />
                 </div>
             </div>

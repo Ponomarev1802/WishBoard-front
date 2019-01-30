@@ -8,6 +8,11 @@ import {
 } from "../actions/UserActions";
 
 export const initialState = {
+    // name: 'Лев',
+    // surname: 'Усенко',
+    // following: 0,
+    // followers: 7,
+    // balance: 750
 };
 
 export function userReducer(state = initialState, action) {

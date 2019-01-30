@@ -1,13 +1,15 @@
-import React, { Component } from 'react'
-import propTypes from 'prop-types'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import propTypes from 'prop-types';
+import {getUser} from "../actions/UserActions";
 
-export class UserCard extends Component {
+class UserCard extends Component {
 
     render() {
 
         const {name, surname, following, followers, balance} = this.props.profile;
 
-        return(
+        return (
             <div id="card" className="d-flex flex-column flex-lg-row align-items-center p-3 card">
                 <div className="avatar mb-3 mb-lg-0 mr-lg-5">
                     <img className="avatar__image" src="https://gamehag.com/img/avatar/481777.jpg" alt="user_avatar" />
@@ -36,15 +38,24 @@ export class UserCard extends Component {
         );
 
     }
-
 }
+
+const mapStateToProps = store => ({
+    profile: store.profile
+});
+
+const mapDispatchToProps = dispatch => ({
+    getUser: data => dispatch(getUser(data))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserCard);
 
 UserCard.propTypes = {
     profile: propTypes.shape({
         name: propTypes.string.isRequired,
         surname: propTypes.string,
-        following: propTypes.number.isRequired,
-        followers: propTypes.number.isRequired,
-        balance: propTypes.number.isRequired
+        following: propTypes.number,
+        followers: propTypes.number,
+        balance: propTypes.number
     })
 };
