@@ -8,20 +8,15 @@ import {
 } from "../actions/UserActions";
 
 export const initialState = {
-    // name: 'Лев',
-    // surname: 'Усенко',
-    // following: 0,
-    // followers: 7,
-    // balance: 750
+    authStatus: false,
+    profile: {}
 };
 
-export function userReducer(state = initialState, action) {
-    switch (action.type) {
+export function userReducer(state = initialState, {type, payload}) {
+    switch (type) {
         case REG_USER_REQUEST:
-            alert('Запрос');
             return state;
         case REG_USER_SUCCESS:
-            alert('Успех');
             return state;
         case REG_USER_ERROR:
             alert('Ошибка');
@@ -32,10 +27,9 @@ export function userReducer(state = initialState, action) {
             alert('Запрос');
             return state;
         case GET_USER_SUCCESS:
-            return action.payload.user;
+            return {...state, profile: payload.user, authStatus: true};
         case GET_USER_ERROR:
-            alert('Ошибка');
-            return state;
+            return {...state, init: true};
         default:
             return state;
     }

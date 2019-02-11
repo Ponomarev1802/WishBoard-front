@@ -1,50 +1,80 @@
-import React from 'react'
-import propTypes from 'prop-types'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
+import React from 'react';
+import { withFormik } from 'formik';
+import { Form, Button } from 'semantic-ui-react';
+import * as Yup from 'yup';
 
-const SignInSchema = Yup.object().shape({
+const { Input } = Form;
+
+const Schema = Yup.object().shape({
     email: Yup.string()
         .required('Введите логин'),
     password: Yup.string()
         .required('Введите пароль')
 });
 
-export const SignInForm = props => (
-    <Formik
-        initialValues={
-            {
-                email: '',
-                password: ''
-            }
-        }
-        validationSchema={SignInSchema}
-        onSubmit={values => props.onSubmit(values)}
-        render={props => (
-            <Form>
-                <div className='form-group'>
-                    <label>Email / логин</label>
-                    <Field
-                        name='email'
-                        className='form-control'
-                    />
-                    <ErrorMessage name='email'>{msg => <div className='invalid-feedback d-block'>{msg}</div>}</ErrorMessage>
-                </div>
-                <div className='form-group'>
-                    <label>Пароль</label>
-                    <Field
-                        name='password'
-                        type='password'
-                        className='form-control'
-                    />
-                    <ErrorMessage name='password'>{msg => <div className='invalid-feedback d-block'>{msg}</div>}</ErrorMessage>
-                </div>
-                <button className='btn btn-primary' type='submit'>Войти</button>
-            </Form>
-        )}
-    />
-);
+const Template = props => {
 
-SignInForm.propTypes = {
-    onSubmit: propTypes.func.isRequired
+    const {
+        values,
+        touched,
+        errors,
+        handleChange,
+        handleBlur,
+        handleSubmit
+    } = props;
+
+    const fieldsData = [
+        {
+            name: 'email',
+            type: 'text',
+            title: 'Эл. почта'
+        },
+        {
+            name: 'password',
+            type: 'password',
+            title: 'Пароль'
+        }
+    ];
+
+    const fieldsTemplate = fieldsData.map((item, i) => (
+        <Input key={i}
+               name={item.name}
+               type={item.type}
+               error={errors[item.name] && touched[item.name]}
+               value={values[item.name]}
+               placeholder={item.title}
+               onChange={handleChange}
+               onBlur={handleBlur}
+        />
+    ));
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            {fieldsTemplate}
+            <Button type='submit'
+                    primary
+                    fluid
+                    disabled={!!Object.keys(errors).length}
+            >
+                Войти
+            </Button>
+        </Form>
+    );
 };
+
+const SignInForm = withFormik({
+
+    mapPropsToValues: () => ({
+        email: '',
+        password: ''
+    }),
+
+    validationSchema: Schema,
+
+    handleSubmit: (values, {props}) => {
+        props.onSubmit(values);
+    }
+
+})(Template);
+
+export default SignInForm;

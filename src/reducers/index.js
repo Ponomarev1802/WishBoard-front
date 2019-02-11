@@ -1,13 +1,13 @@
 import {combineReducers} from 'redux'
 import {wishesReducer} from './wishes'
 import {userReducer} from './user'
+import {appReducer} from "./app";
 
-const initialState = {
-    isFetching: false
-};
+const initialState = {};
 
 export const rootReducer = combineReducers({
 	initialState,
-	profile: userReducer,
-	wishes: wishesReducer,
+	app: appReducer,
+	user: userReducer,
+	wishes: wishesReducer
 });

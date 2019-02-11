@@ -7,7 +7,7 @@ class UserCard extends Component {
 
     render() {
 
-        const {name, surname, following, followers, balance} = this.props.profile;
+        const {name, surname, follows, followers} = this.props.profile;
 
         return (
             <div id="card" className="d-flex flex-column flex-lg-row align-items-center p-3 card">
@@ -18,7 +18,7 @@ class UserCard extends Component {
                     <p className="lead">{name} {surname}</p>
                     <div className="d-flex">
                         <div className="mr-3 text-center">
-                            <span className="font-weight-bold">{following}</span>
+                            <span className="font-weight-bold">{follows}</span>
                             <br />
                             <span>подписок</span>
                         </div>
@@ -28,9 +28,9 @@ class UserCard extends Component {
                             <span>подписчиков</span>
                         </div>
                         <div className="text-center">
-                            <span className="font-weight-bold">{balance}</span>
+                            <span className="font-weight-bold">0</span>
                             <br />
-                            <span>баланс</span>
+                            <span>желаний</span>
                         </div>
                     </div>
                 </div>
@@ -41,7 +41,7 @@ class UserCard extends Component {
 }
 
 const mapStateToProps = store => ({
-    profile: store.profile
+    profile: store.user.profile
 });
 
 const mapDispatchToProps = dispatch => ({

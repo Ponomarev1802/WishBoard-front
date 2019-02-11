@@ -1,0 +1,45 @@
+@import "../../index";
+
+.auth-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.wrapper {
+    display: block;
+    width: 22rem;
+    background: #ffffff;
+    border: 1px solid $light-gray;
+}
+
+.wrapper__header {
+    margin: 2rem 0;
+    padding: 0 2rem;
+}
+
+.wrapper__body {
+    margin: 1rem 0;
+    padding: 0 2rem;
+}
+
+.wrapper__footer {
+    margin: 1rem 0 2rem;
+    padding: 0 2rem;
+}
+
+.wrapper__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #4a4a4a;
+    text-align: center;
+}
+
+.wrapper__small-text {
+    margin-top: 1rem;
+    font-size: .875rem;
+    color: #4a4a4a;
+    text-align: center;
+}

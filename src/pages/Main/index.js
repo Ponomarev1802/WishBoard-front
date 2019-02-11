@@ -1,16 +1,17 @@
 import React from 'react';
-import Wishes from '../Wishes';
-import {Nav} from "../Nav";
-import UserCard from "../UserCard";
+import Wishes from '../../components/Wishes';
+import {Nav} from "../../components/Nav";
+import UserCard from "../../components/UserCard";
+import AddWishForm from "../../components/Forms/AddWish";
 
-export const Main = props => {
-    const {profile, wishes} = props;
+const Main = () => {
+
     return (
         <section className="container pt-4">
             <div className="row">
                 <section className="col-lg-9" id="main">
-                    <UserCard profile={profile}/>
-                    <Wishes wishes={wishes} />
+                    <UserCard />
+                    <Wishes />
                 </section>
                 <nav className="navbar navbar-light bg-white fixed-bottom d-lg-none" id="nav">
                     <a className="nav-link active" href="#profile"><i className="far fa-user fa-lg" /></a>
@@ -21,7 +22,13 @@ export const Main = props => {
                 <div className="col-lg-3">
                     <Nav />
                 </div>
+                <div style={{width: "50%", background: "#ffffff", padding: "16px"}}>
+                    <AddWishForm />
+                </div>
             </div>
         </section>
     );
+
 };
+
+export default Main;

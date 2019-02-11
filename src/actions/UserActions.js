@@ -13,15 +13,23 @@ export function regUser(profile) {
             type: REG_USER_REQUEST
         });
 
-        fetch('/newUser', {
+        fetch('/user', {
             method: 'POST',
             body: JSON.stringify(profile)
         })
+            .then(res => {
+                if (res.status !== 200) {
+                    return Promise.reject(new Error(res.statusText))
+                }
+            })
             .then(res => res.json())
             .then(res => {
                 dispatch({
-                    type: res.status.req ? REG_USER_SUCCESS : REG_USER_ERROR
+                    type: !res.status.err ? REG_USER_SUCCESS : REG_USER_ERROR
                 })
+            })
+            .catch(err => {
+                console.log('Error: ', err);
             })
     }
 }
@@ -36,6 +44,11 @@ export function authUser(data) {
             method: 'POST',
             body: JSON.stringify(data)
         })
+            .then(res => {
+                if (res.status !== 200) {
+                    return Promise.reject(new Error(res.statusText))
+                }
+            })
             .then(res => res.json())
             .then(res => {
                 if (res.status.auth) {
@@ -49,16 +62,25 @@ export function authUser(data) {
                     });
                 }
             })
+            .catch(err => {
+                console.log('Error: ', err);
+            })
     }
 }
 
-export function getUser(data) {
+export function getUser() {
     return dispatch => {
         dispatch({
             type: GET_USER_REQUEST
         });
 
-        fetch('/getUser')
+        fetch('/user')
+            .then(res => {
+                if (res.status !== 200) {
+                    return Promise.reject(new Error(res.statusText))
+                }
+                return Promise.resolve(res);
+            })
             .then(res => res.json())
             .then(res => {
                 if (res.status.auth) {
@@ -71,6 +93,9 @@ export function getUser(data) {
                         type: GET_USER_ERROR
                     });
                 }
+            })
+            .catch(err => {
+                console.log(err);
             })
     }
 }
