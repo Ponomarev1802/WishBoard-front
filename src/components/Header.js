@@ -1,12 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-export class Header extends React.Component{
-    render(){
-        return(
-            <header className="navbar justify-content-between">
-                <a className="navbar-brand" href="/">WishBoard</a>
-                <a className="" href="/logout">Выйти</a>
-            </header>
-        );
-    }
-}
+export const Header = () => (
+    <header className="navbar justify-content-between">
+        <a className="navbar-brand" href="/">WishBoard</a>
+    </header>
+);

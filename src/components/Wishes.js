@@ -1,15 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import Wish from './Wish'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
+import {Wish} from './Wish'
+import {getWishes, delWish} from "../actions/Actions";
 
+class Wishes extends Component {
 
-class Wishes extends React.Component{
-    render(){
-        const wishesList = this.props.wishes.map((item)=>(
-			<Wish key={item.id} id = {item.id} title={item.title}/>
-		));
-        return(
+    componentDidMount() {
+        this.props.getWishes();
+    }
+
+    deleteWish = id => {
+
+        const {wishes, delWish} = this.props;
+
+        fetch(`/wish/${id}`, {
+            method: 'POST',
+            body: JSON.stringify({})
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (!res.status.err) {
+                    let newWishes = wishes.filter(item => item.id !== id);
+                    delWish(newWishes);
+                } else {
+                    alert('Ошибка!');
+                }
+            })
+    };
+
+    render() {
+
+        const {wishes} = this.props;
+
+        const wishesList = wishes.map(item => (
+            <Wish key={item.id} data={item} onDelete={this.deleteWish}/>
+        ));
+
+        return (
             <div id="wishes" className="p-3 bg-white card">
                 <div className="nav nav-tabs">
                     <div className="nav-item">
@@ -38,14 +66,17 @@ class Wishes extends React.Component{
     }
 }
 
-const mapStateToProps = store=>{
-	return {
-		wishes: store.wishes,
-	}
-};
+const mapStateToProps = store => ({
+    wishes: store.wishes
+});
+
+const mapDispatchToProps = dispatch => ({
+    getWishes: () => dispatch(getWishes()),
+    delWish: id => dispatch(delWish(id))
+});
 
 Wishes.propTypes = {
-	wishes: PropTypes.array.isRequired,
+	wishes: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps)(Wishes);
+export default connect(mapStateToProps, mapDispatchToProps)(Wishes);

@@ -1,18 +1,13 @@
-export const initialState = [
+import {DEL_WISH, GET_WISHES_SUCCESS} from "../actions/Actions";
 
-];
+export const initialState = [];
 
-export function wishesReducer(state = initialState, action) {
-	switch (action.type) {
-		case 'DEL_WISH':
-			return state.slice(0, action.payload).concat(state.slice(action.payload+1))
-		case 'GET_PROFILE':
-			if (action.payload.wishes===undefined)
-		        return null
-            else
-			    return (action.payload.wishes)
-
-
+export function wishesReducer(state = initialState, {type, payload}) {
+	switch (type) {
+		case DEL_WISH:
+			return payload;
+		case GET_WISHES_SUCCESS:
+            return payload;
 	default:
 		return state;
 	}
