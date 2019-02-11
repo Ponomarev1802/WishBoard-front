@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
-import {Button} from "../../Button";
+//import {Button} from "../../Button";
 
 class AddWishForm extends Component {
 
@@ -51,7 +51,7 @@ class AddWishForm extends Component {
                                     <ErrorMessage name='password'>{msg => <div
                                         className='invalid-feedback d-block'>{msg}</div>}</ErrorMessage>
                                 </div>
-                                <Button type='submit' block>Войти</Button>
+
                             </React.Fragment>
                             : null }
                     </Form>
