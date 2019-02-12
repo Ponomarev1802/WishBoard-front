@@ -26,30 +26,6 @@ class Login extends Component {
         const {registered} = this.state;
         const {authUser, regUser} = this.props;
 
-        // return (
-        //     <div className='auth-page'>
-        //         <section className='wrapper'>
-        //             <div className="wrapper__header">
-        //                 <h1 className='wrapper__title'>{ registered ? 'Вход' : 'Регистрация' }</h1>
-        //             </div>
-        //             <div className="wrapper__body">
-        //                 { registered ? <SignInForm onSubmit={authUser} /> : <SignUpForm onSubmit={regUser} /> }
-        //             </div>
-        //             <div className='wrapper__footer'>
-        //                 { registered ?
-        //                     <p className="wrapper__small-text">
-        //                         Нет учётной записи? <a href="#register" onClick={this.changeForm}>Зарегистрироваться</a>
-        //                     </p>
-        //                     :
-        //                     <p className="wrapper__small-text">
-        //                         Есть учётная запись? <a href="#login" onClick={this.changeForm}>Войти</a>
-        //                     </p>
-        //                 }
-        //             </div>
-        //         </section>
-        //     </div>
-        // );
-
         return (
             <Grid centered>
                 <Column width={4}>
@@ -79,4 +55,4 @@ const mapDispatchToProps = dispatch => ({
     regUser: data => dispatch(regUser(data))
 });
 
-export default connect(() => {}, mapDispatchToProps)(Login);
+export default connect(() => ({}), mapDispatchToProps)(Login);

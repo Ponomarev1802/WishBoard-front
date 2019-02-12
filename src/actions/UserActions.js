@@ -5,7 +5,10 @@ export const
     AUTH_USER_REQUEST = 'GET_USER_REQUEST',
     GET_USER_REQUEST  = 'GET_USER_REQUEST',
     GET_USER_SUCCESS  = 'GET_USER_SUCCESS',
-    GET_USER_ERROR    = 'GET_USER_ERROR';
+    GET_USER_ERROR    = 'GET_USER_ERROR',
+    LOGOUT_USER_REQUEST = 'LOGOUT_USER_REQUEST',
+    LOGOUT_USER_SUCCESS = 'LOGOUT_USER_SUCCESS',
+    LOGOUT_USER_ERROR = 'LOGOUT_USER_ERROR';
 
 export function regUser(profile) {
     return dispatch => {
@@ -17,11 +20,6 @@ export function regUser(profile) {
             method: 'POST',
             body: JSON.stringify(profile)
         })
-            .then(res => {
-                if (res.status !== 200) {
-                    return Promise.reject(new Error(res.statusText))
-                }
-            })
             .then(res => res.json())
             .then(res => {
                 dispatch({
@@ -70,12 +68,6 @@ export function getUser() {
         });
 
         fetch('/user')
-            .then(res => {
-                if (res.status !== 200) {
-                    return Promise.reject(new Error(res.statusText))
-                }
-                return Promise.resolve(res);
-            })
             .then(res => res.json())
             .then(res => {
                 if (res.status.auth) {
@@ -93,4 +85,34 @@ export function getUser() {
                 console.log(err);
             })
     }
+}
+
+export function logoutUser() {
+
+    return dispatch => {
+
+        dispatch({
+            type: LOGOUT_USER_REQUEST
+        });
+
+        fetch('/logout', {
+            method: 'POST'
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (!res.status.auth) {
+                    dispatch({
+                        type: LOGOUT_USER_SUCCESS
+                    })
+                } else {
+                    dispatch({
+                        type: LOGOUT_USER_ERROR
+                    });
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
 }

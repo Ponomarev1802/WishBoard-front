@@ -26,11 +26,6 @@ export const getWishes = () => {
         });
 
         fetch('/wish')
-            .then(res => {
-                if (res.status !== 200) {
-                    return Promise.reject(new Error(res.statusText))
-                }
-            })
             .then(res => res.json())
             .then(res => {
                 if (res.status.auth) {

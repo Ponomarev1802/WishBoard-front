@@ -4,7 +4,7 @@ import {
     REG_USER_ERROR,
     GET_USER_REQUEST,
     GET_USER_SUCCESS, GET_USER_ERROR,
-    AUTH_USER_REQUEST
+    AUTH_USER_REQUEST, LOGOUT_USER_REQUEST, LOGOUT_USER_SUCCESS, LOGOUT_USER_ERROR
 } from "../actions/UserActions";
 
 export const initialState = {
@@ -30,6 +30,12 @@ export function userReducer(state = initialState, {type, payload}) {
             return {...state, profile: payload.user, authStatus: true};
         case GET_USER_ERROR:
             return {...state, init: true};
+        case LOGOUT_USER_REQUEST:
+            return {...state};
+        case LOGOUT_USER_SUCCESS:
+            return {...state, authStatus: false};
+        case LOGOUT_USER_ERROR:
+            return {...state, authStatus: true};
         default:
             return state;
     }

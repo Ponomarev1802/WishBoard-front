@@ -1,8 +1,17 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Wish} from './Wish'
+
+import {
+    Button,
+    Card,
+    Icon,
+    Image,
+    Label
+} from 'semantic-ui-react';
+
 import {getWishes, delWish} from "../actions/Actions";
+
 
 class Wishes extends Component {
 
@@ -34,34 +43,43 @@ class Wishes extends Component {
         const {wishes} = this.props;
 
         const wishesList = wishes.map(item => (
-            <Wish key={item.id} data={item} onDelete={this.deleteWish}/>
+            <Card key={item.id}>
+                <Card.Content>
+                    <Card.Header>
+                        {item.title}
+                    </Card.Header>
+                    <Card.Meta>{item.creationdate}</Card.Meta>
+                </Card.Content>
+                { item.image && <Image src={item.image} /> }
+                { item.description && <Card.Content description={item.description} /> }
+                <Card.Content extra>
+                    { item.category && <Label tag content={item.category} /> }
+                    <Button color='red'
+                            icon
+                            onClick={() => { this.deleteWish(item.id) }}>
+                        <Icon name='trash' />
+                    </Button>
+                    {
+                        item.link &&
+                            <Button as='a'
+                                    href={item.link}
+                                    target='_blank'
+                                    icon
+                                    >
+                                <Icon name='share' />
+                            </Button>
+                    }
+                    <Button icon>
+                        <Icon name='share alternate' />
+                    </Button>
+                </Card.Content>
+            </Card>
         ));
 
         return (
-            <div id="wishes" className="p-3 bg-white card">
-                <div className="nav nav-tabs">
-                    <div className="nav-item">
-                        <a className="nav-link active" href="#latest">Последние</a>
-                    </div>
-                    <div className="nav-item">
-                        <a className="nav-link" href="#active">Активные</a>
-                    </div>
-                    <div className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#dropdown">Категории</a>
-                        <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#action">Action</a>
-                            <a className="dropdown-item" href="#another-action">Another action</a>
-                            <a className="dropdown-item" href="#something">Something else here</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#separated-link">Separated link</a>
-                        </div>
-                    </div>
-                    <div className="nav-item">
-                        <a className="nav-link" href="#completed">Завершенные</a>
-                    </div>
-                </div>
+            <Card.Group itemsPerRow={3}>
                 {wishesList}
-            </div>
+            </Card.Group>
         );
     }
 }

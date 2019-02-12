@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {
+    Button,
+    Icon
+} from 'semantic-ui-react';
+
 export const Wish = props => {
 
     const {onDelete} = props;
@@ -9,7 +14,11 @@ export const Wish = props => {
     return (
         <div className="d-flex">
             <span className="btn btn-light flex-grow-1 mr-1">{title}</span>
-            <span className="btn btn-light mr-1" onClick={() => { onDelete(id) }}><i className="far fa-trash-alt"/></span>
+            <Button
+                icon
+                onClick={() => { onDelete(id) }}>
+                <Icon name='trash' />
+            </Button>
             <span className="btn btn-light"><i className="fas fa-ellipsis-h"/></span>
         </div>
     );
