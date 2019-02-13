@@ -20,7 +20,7 @@ class App extends Component {
         const {authStatus} = this.props;
         return (
             <Fragment>
-                { this.props.init ? (authStatus ? <Main /> : <Login />) : <Loader active /> }
+                { !this.props.init ? (!authStatus ? <Main /> : <Login />) : <Loader active /> }
             </Fragment>
         );
     }

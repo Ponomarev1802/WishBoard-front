@@ -1,0 +1,42 @@
+.profile {
+    text-align: center;
+}
+
+.profile:first-child {
+    margin-top: 0;
+}
+
+.profile > .photo {
+    margin: 1rem 0;
+}
+
+.profile > .name {
+    display: block;
+    margin: .25rem 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.profile > .full-profile {
+    color: #888888;
+}
+
+.profile > .stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.profile > .stats > .item {
+
+}
+
+.profile > .stats > .item > .title {
+    display: block;
+}
+
+.profile > .stats > .item > .title {
+    display: block;
+    font-weight: 500;
+}

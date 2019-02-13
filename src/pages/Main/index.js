@@ -40,13 +40,13 @@ const Main = props => {
                         </Column>
                     </Row>
                     <Row>
-                        <Column width={4}>
-                            <Row textAlign='center'>
+                        <Column width={3}>
+                            <Row>
                                 <UserCard />
                                 <Nav />
                             </Row>
                         </Column>
-                        <Column width={12}>
+                        <Column width={13}>
                             <Wishes />
                         </Column>
                     </Row>
